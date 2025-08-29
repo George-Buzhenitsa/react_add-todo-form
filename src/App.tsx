@@ -44,7 +44,9 @@ export const App = () => {
   };
 
   const adjustTitle = () => {
-    return title.split('').filter((symbol: string) => /[a-zaA-Z]+|\d+|\s{1}/.test(symbol) === true).join('');
+    return title.split('').filter((symbol: string) => {
+      return /[a-zA-Zа-яА-ЯёЁіІїЇєЄґҐ]+|\d+|\s{1}/.test(symbol) === true;
+    }).join('');
   }
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -115,7 +117,7 @@ export const App = () => {
               value={userSelect}
               onChange={handleSelect}
             >
-              <option value="0" disabled defaultValue={0}>
+              <option value="0" disabled>
                 Choose a user
               </option>
               {usersFromServer.map(user => {
